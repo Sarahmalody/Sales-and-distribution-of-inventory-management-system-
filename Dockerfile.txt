@@ -1,0 +1,16 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies first (layer caching)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy dataset and script
+COPY retail_store_data.xlsx .
+COPY phase2.py .
+
+# Output folder will be created by the script
+RUN mkdir -p outputs
+
+CMD ["python", "phase2.py"]

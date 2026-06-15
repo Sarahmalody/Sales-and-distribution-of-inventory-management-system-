@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  retail-ml:
+    build: .
+    container_name: retail_sales_model
+    volumes:
+      # Mount local outputs folder so charts & results persist on your machine
+      - ./outputs:/app/outputs
+    restart: "no"
